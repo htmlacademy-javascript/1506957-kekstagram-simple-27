@@ -14,3 +14,15 @@ const getRandomNumber = (min, max) => {
   }
 };
 getRandomNumber();
+
+//Функция для проверки максимальной длины строки
+const maxStringLength = (string, maxLength) => {
+  if (string.length < maxLength) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+maxStringLength();
