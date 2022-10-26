@@ -10,10 +10,9 @@ const getRandomNumber = (min, max) => {
   }
   return Math.floor(Math.random() * (max - min) + min);
 };
-getRandomNumber();
 
 //Функция для проверки максимальной длины строки
-//const maxStringLength = (string, maxLength) => string.length < maxLength;
+const maxStringLength = (string, maxLength) => string.length < maxLength;
 //maxStringLength();
 
 export {getRandomNumber};

@@ -23,15 +23,17 @@ const COMMENTS_COUNT = {
 const getRandomElement = (elements) => (elements[getRandomNumber(0, elements.length - 1 )]);
 
 const createElement = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
+  id: index + 1,
+  url: `photos/${index + 1}.jpg`,
   description: getRandomElement(DESCRIPTION_FOR_PHOTO),
   likes: getRandomNumber(LIKES_COUNT.min, LIKES_COUNT.max),
   comments: getRandomNumber(COMMENTS_COUNT.min, COMMENTS_COUNT.max)
 });
 
 // eslint-disable-next-line no-shadow
-const similarElements = (index) => [...Array(index)].map((_item, index) => createElement(index + 1));
-const similarElementsArray = similarElements(ELEMENTS_COUNTS);
+const similarElements = Array.from({length: ELEMENTS_COUNTS}, (_, index) => createElement(index));
+// const similarElementsArray = similarElements(ELEMENTS_COUNTS);
 
-export{similarElementsArray};
+// удалить ..арай(индекс), удалить переменную симиларЕлементс
+
+export{similarElements};
