@@ -1,3 +1,3 @@
-import { similarElementsArray } from './data.js';
-// eslint-disable-next-line no-console
-console.log(similarElementsArray);
+import { similarElements } from './data.js';
+import './render.js';
+
