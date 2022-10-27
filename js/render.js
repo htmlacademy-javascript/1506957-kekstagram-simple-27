@@ -14,3 +14,5 @@ similarPhoto.forEach(({url, likes, comments}) => {
   similarListFragment.append(photoElement);
 });
 similarListElement.append(similarListFragment);
+
+изменения
