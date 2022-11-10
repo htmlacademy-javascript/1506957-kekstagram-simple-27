@@ -9,7 +9,6 @@ const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__text',
   errorTextParent: 'img-upload__text',
   errorTextTag: 'span',
-  // errorTextClass: 'img-upload__text__error'
 }
 );
 
@@ -20,7 +19,7 @@ function validateComment (value) {
 pristine.addValidator(
   imgUploadForm.querySelector('#description'),
   validateComment,
-  'От 20 до 140 символов'
+  `От ${TITLE_WORDS_RANGE.min} до ${TITLE_WORDS_RANGE.max} символов`
 );
 
 const validateForm = () => {
