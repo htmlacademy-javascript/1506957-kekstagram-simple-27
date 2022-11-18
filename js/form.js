@@ -1,52 +1,58 @@
-import {isEscapeKey} from './util.js';
+import { isEscapeKey } from './util.js';
+import { resetScale } from './scale-slider.js';
+import { resetEffects } from './effects.js';
 
-const imgUploadForm = document.querySelector('.img-upload__form');
-const uploadControlOpenButton = document.querySelector('#upload-file');
+const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const uploadControlCloseButton = uploadOverlay.querySelector('#upload-cancel');
 const body = document.querySelector('body');
+const uploadControlCloseButton = uploadOverlay.querySelector('#upload-cancel');
+const uploadControlOpenButton = document.querySelector('#upload-file');
 
-const onControlEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    toCloseControl();
-  }};
+const pristine = new Pristine(form, {
+  classTo: 'img-upload__text',
+  errorTextParent: 'img-upload__text',
+  errorTextTag: 'span',
+}
+);
 
-function toOpenControl () {
+const toOpenControl = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
 
   document.addEventListener('keydown', onControlEscKeydown);
-}
+};
 
-function toCloseControl () {
+const toCloseControl = () => {
+  form.reset();
+  resetScale();
+  resetEffects();
+  pristine.reset();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  imgUploadForm.reset();
 
   document.removeEventListener('keydown', onControlEscKeydown);
-}
+};
 
-//Закинуть в функцию ?
-uploadControlOpenButton.addEventListener('change', () => {
-  toOpenControl();
-});
-uploadControlOpenButton.addEventListener('keydown', (evt) => {
+function onControlEscKeydown(evt) {
   if (isEscapeKey(evt)) {
-    toOpenControl();
-  }
-});
-
-uploadControlCloseButton.addEventListener('click', () => {
-  toCloseControl();
-});
-uploadControlCloseButton.removeEventListener('keydown', (evt) => {
-  if (isEscapeKey(evt)) {
+    evt.preventDefault();
     toCloseControl();
   }
-});
+}
 
-export {imgUploadForm};
+const onCloseButtonClick = () => {
+  toCloseControl();
+};
 
+const onUploadButtonChange = () => {
+  toOpenControl();
+};
 
-// 8,24 слайд 2 и 8
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+  pristine.validate();
+};
+
+uploadControlOpenButton.addEventListener('change', onUploadButtonChange);
+uploadControlCloseButton.addEventListener('click', onCloseButtonClick);
+form.addEventListener('submit', onFormSubmit);
