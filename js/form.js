@@ -1,12 +1,16 @@
-import { isEscapeKey } from './util.js';
+import { isEscapeKey} from './util.js';
 import { resetScale } from './scale-slider.js';
 import { resetEffects } from './effects.js';
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage} from './messages.js';
 
 const form = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
 const uploadControlCloseButton = uploadOverlay.querySelector('#upload-cancel');
 const uploadControlOpenButton = document.querySelector('#upload-file');
+const submitButton = document.querySelector('.img-upload__submit');
+
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
@@ -48,11 +52,39 @@ const onUploadButtonChange = () => {
   toOpenControl();
 };
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Опубликовываю...';
 };
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
 
 uploadControlOpenButton.addEventListener('change', onUploadButtonChange);
 uploadControlCloseButton.addEventListener('click', onCloseButtonClick);
-form.addEventListener('submit', onFormSubmit);
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData (
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+          showSuccessMessage();
+        },
+        () => {
+          showErrorMessage();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    }});
+};
+
+export {setUserFormSubmit, toCloseControl};
