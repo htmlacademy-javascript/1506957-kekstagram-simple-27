@@ -20,6 +20,9 @@ const COMMENTS_COUNT = {
   max: 200
 };
 
+const serverUrlGet = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+const serverUrlPost = 'https://27.javascript.pages.academy/kekstagram-simple';
+
 const getRandomElement = (elements) => (elements[getRandomNumber(0, elements.length - 1 )]);
 
 const createElement = (index) => ({
@@ -30,7 +33,6 @@ const createElement = (index) => ({
   comments: getRandomNumber(COMMENTS_COUNT.min, COMMENTS_COUNT.max)
 });
 
-// eslint-disable-next-line no-shadow
 const similarElements = Array.from({length: ELEMENTS_COUNTS}, (_, index) => createElement(index));
 
-export{similarElements};
+export{similarElements, serverUrlGet, serverUrlPost};

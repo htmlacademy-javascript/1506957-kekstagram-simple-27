@@ -1,11 +1,9 @@
-import { similarElements } from './data.js';
-
 const similarListElement = document.querySelector('.pictures');
 const similarElementTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const similarListFragment = document.createDocumentFragment();
 
-const toRenderPhotoCard = () => {
+const toRenderPhotoCard = (similarElements) => {
   similarElements.forEach(({url, likes, comments}) => {
     const photoElement = similarElementTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
