@@ -1,24 +1,19 @@
-import {serverUrlGet} from './data.js';
-import { serverUrlPost } from './data.js';
-import {showAlert} from './util.js';
+import { SERVER_URL_POST, SERVER_URL_GET, showAlert} from './util.js';
 
 const getData = (onSuccess) => {
-  fetch(serverUrlGet)
+  fetch(SERVER_URL_GET)
     .then((response) => response.json())
-    .then((photo) => onSuccess(photo)) //304 error ???
+    .then((photo) => onSuccess(photo))
     .catch(() => showAlert(
       'Ошибка запроса с сервера. Попробуйте обновить страницу'
     ));
 };
 
 const sendData = (onSuccess, onFail, body) => {
-  fetch(serverUrlPost,
+  fetch(SERVER_URL_POST,
     {
       method: 'POST',
       body,
-      // headers: {
-      // 'Content-Type': 'multipart/form-data',             ???????????????
-      // }
     }
   ).then ((response) => {
     if (response.ok) {
@@ -32,4 +27,4 @@ const sendData = (onSuccess, onFail, body) => {
     });
 };
 
-export {getData, sendData};
+export { getData, sendData };

@@ -1,16 +1,15 @@
-import { isEscapeKey} from './util.js';
+import { isEscapeKey } from './util.js';
 import { resetScale } from './scale-slider.js';
 import { resetEffects } from './effects.js';
 import { sendData } from './api.js';
-import { showErrorMessage, showSuccessMessage} from './messages.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
 
-const form = document.querySelector('.img-upload__form');
-const uploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
-const uploadControlCloseButton = uploadOverlay.querySelector('#upload-cancel');
+const form = document.querySelector('.img-upload__form');
 const uploadControlOpenButton = document.querySelector('#upload-file');
 const submitButton = document.querySelector('.img-upload__submit');
-
+const uploadOverlay = document.querySelector('.img-upload__overlay');
+const uploadControlCloseButton = uploadOverlay.querySelector('#upload-cancel');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',

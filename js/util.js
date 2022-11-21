@@ -1,19 +1,58 @@
-const getRandomNumber = (min, max) => {
-  if (min < 0 || max < 0) {
-    return NaN;
+const SERVER_URL_GET = 'https://27.javascript.pages.academy/kekstagram-simple/dat';
+const SERVER_URL_POST = 'https://27.javascript.pages.academy/kekstagram-simple';
+
+const EFFECTS = [
+  {
+    name: 'none',
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+  {
+    name: 'chrome',
+    style: 'grayscale',
+    min: 0,
+    max: 1,
+    step: 0.1,
+    unit: ''
+  },
+  {
+    name: 'sepia',
+    style: 'sepia',
+    min: 0,
+    max: 1,
+    step: 0.1,
+    unit: ''
+  },
+  {
+    name: 'marvin',
+    style: 'invert',
+    min: 0,
+    max: 100,
+    step: 1,
+    unit: '%'
+  },
+  {
+    name: 'phobos',
+    style: 'blur',
+    min: 0,
+    max: 3,
+    step: 0.1,
+    unit: 'px'
+  },
+  {
+    name: 'heat',
+    style: 'brightness',
+    min: 1,
+    max: 3,
+    step: 0.1,
+    unit: ''
   }
-  if (max < min) {
-    const temp = max;
-    max = min;
-    min = temp;
-  }
-  return Math.floor(Math.random() * (max - min) + min);
-};
+];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const SET_TIMEOUT_TIME_FOR_ALERT = 5000;
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -36,4 +75,5 @@ const showAlert = (message) => {
   }, SET_TIMEOUT_TIME_FOR_ALERT);
 };
 
-export {getRandomNumber, isEscapeKey, showAlert};
+
+export { SERVER_URL_GET, SERVER_URL_POST, isEscapeKey, showAlert, EFFECTS };
