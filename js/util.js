@@ -1,4 +1,4 @@
-const SERVER_URL_GET = 'https://27.javascript.pages.academy/kekstagram-simple/dat';
+const SERVER_URL_GET = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 const SERVER_URL_POST = 'https://27.javascript.pages.academy/kekstagram-simple';
 
 const EFFECTS = [

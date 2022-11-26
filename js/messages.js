@@ -39,4 +39,3 @@ function closeMessage () {
 }
 
 export { showErrorMessage, showSuccessMessage };
-
