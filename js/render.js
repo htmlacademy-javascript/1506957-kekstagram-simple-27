@@ -1,6 +1,5 @@
 const similarListElement = document.querySelector('.pictures');
 const similarElementTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
 const similarListFragment = document.createDocumentFragment();
 
 const toRenderPhotoCard = (similarElements) => {
