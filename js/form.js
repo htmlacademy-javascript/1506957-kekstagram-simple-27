@@ -18,14 +18,14 @@ const pristine = new Pristine(form, {
 }
 );
 
-const toOpenControl = () => {
+const openControl = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
 
   document.addEventListener('keydown', onControlEscKeydown);
 };
 
-const toCloseControl = () => {
+const closeControl = () => {
   form.reset();
   resetScale();
   resetEffects();
@@ -39,16 +39,16 @@ const toCloseControl = () => {
 function onControlEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    toCloseControl();
+    closeControl();
   }
 }
 
 const onCloseButtonClick = () => {
-  toCloseControl();
+  closeControl();
 };
 
 const onUploadButtonChange = () => {
-  toOpenControl();
+  openControl();
 };
 
 
@@ -72,18 +72,11 @@ const setUserFormSubmit = (onSuccess) => {
     if (isValid) {
       blockSubmitButton();
       sendData (
-        () => {
-          onSuccess();
-          unblockSubmitButton();
-          showSuccessMessage();
-        },
-        () => {
-          showErrorMessage();
-          unblockSubmitButton();
-        },
+        () => onSuccess(unblockSubmitButton(), closeControl(), showSuccessMessage()),
+        () => showErrorMessage(unblockSubmitButton(), showErrorMessage(), unblockSubmitButton()),
         new FormData(evt.target),
       );
     }});
 };
 
-export {setUserFormSubmit, toCloseControl};
+export {setUserFormSubmit, closeControl, onControlEscKeydown};

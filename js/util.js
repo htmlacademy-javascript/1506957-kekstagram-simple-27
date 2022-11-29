@@ -1,5 +1,6 @@
 const SERVER_URL_GET = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 const SERVER_URL_POST = 'https://27.javascript.pages.academy/kekstagram-simple';
+const SET_TIMEOUT_TIME_FOR_ALERT = 5000;
 
 const EFFECTS = [
   {
@@ -52,7 +53,6 @@ const EFFECTS = [
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const SET_TIMEOUT_TIME_FOR_ALERT = 5000;
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -74,6 +74,5 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, SET_TIMEOUT_TIME_FOR_ALERT);
 };
-
 
 export { SERVER_URL_GET, SERVER_URL_POST, isEscapeKey, showAlert, EFFECTS };

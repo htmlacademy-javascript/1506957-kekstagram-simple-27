@@ -1,7 +1,7 @@
-import { toRenderPhotoCard } from './render.js';
-import { toCloseControl, setUserFormSubmit } from './form.js';
+import { renderPhotoCard } from './render.js';
+import { closeControl, setUserFormSubmit } from './form.js';
 import { getData } from './api.js';
 
-getData((photo) => toRenderPhotoCard(photo));
+getData((photo) => renderPhotoCard(photo));
 
-setUserFormSubmit(toCloseControl);
+setUserFormSubmit(closeControl);

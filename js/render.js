@@ -2,7 +2,7 @@ const similarListElement = document.querySelector('.pictures');
 const similarElementTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const similarListFragment = document.createDocumentFragment();
 
-const toRenderPhotoCard = (similarElements) => {
+const renderPhotoCard = (similarElements) => {
   similarElements.forEach(({url, likes, comments}) => {
     const photoElement = similarElementTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
@@ -14,4 +14,4 @@ const toRenderPhotoCard = (similarElements) => {
   return similarListElement;
 };
 
-export {toRenderPhotoCard};
+export {renderPhotoCard};
